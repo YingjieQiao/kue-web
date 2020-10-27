@@ -2,8 +2,7 @@ from flask import Blueprint, render_template, current_app, jsonify
 import requests
 from random import randint
 
-
-pages = Blueprint('pages', __name__, template_folder="/Users/yingjieqiao/Desktop/kue-web/dist")
+pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
 
 @pages.route('/api/random')

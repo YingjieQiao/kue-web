@@ -4,14 +4,16 @@ from flask_cors import CORS
 import requests
 
 
-def create_app():
-    app = Flask(__name__,
-                static_folder = "/Users/yingjieqiao/Desktop/kue-web/dist/static",
-                template_folder = "/Users/yingjieqiao/Desktop/kue-web/dist")
+def create_app(Config):
+    app = Flask(__name__)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+    app.config.from_object(Config)
+    app.static_folder = app.config["STATIC_FOLDER"]
+    app.template_folder = app.config["TEMPLATE_FOLDER"]
 
-    from backend.pages.routers import pages
-    app.register_blueprint(pages)
+    with app.app_context():
+        from backend.pages.routers import pages
+        app.register_blueprint(pages)
 
     return app
 
