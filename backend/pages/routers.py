@@ -16,6 +16,4 @@ def random_number():
 @pages.route('/', defaults={'path': ''})
 @pages.route('/<path:path>')
 def catch_all(path):
-    if current_app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
