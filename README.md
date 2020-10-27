@@ -1,13 +1,14 @@
 # flask-vue-spa
-Vue.js SPA served over Flask microframework
 
-* Python: 3.6.3
-* Vue.js: 2.5.2
-* vue-router: 3.0.1
-* axios: 0.16.2
+## Colab
 
-Tutorial on how I build this app:
-https://medium.com/@oleg.agapov/full-stack-single-page-application-with-vue-js-and-flask-b1e036315532
+1. You can fork a copy of this repo and clone to your computer.
+
+2. Create a new branch using git checkout -b BRANCHNAME
+
+3. Commit the code and push to a new branch, and open a pull request.
+
+The rule of thumb is that don't push code to master branch directly.
 
 ## Build Setup
 
