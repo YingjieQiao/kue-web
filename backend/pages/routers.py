@@ -23,12 +23,10 @@ db = firebase.database()
 
 
 @pages.route('/api/random')
-def random_number():
-    # this API should be in the Java App in the end
-    count = db.child("count").get().val()
-    count += 1
-    db.child("count").set(count)
-
+def get_order():
+    """
+    TODO:  pushing the order into db should be done in the Java App
+    Payload format:
     data = {
         "dtype" : "orders",
 
@@ -49,20 +47,26 @@ def random_number():
 
         "eta": "NA"
     }
-    db.child(data["dtype"]).child(data["sn"]).push(data["payload"])
 
-    # try getting last record
-    # last_record = db.child(data["dtype"]).order_by_key().limit_to_last(1).get().val()
-    # print(last_record)
+    query (in python): db.child(data["dtype"]).child(data["sn"]).push(data["payload"])
+    """
+
+    record = db.child('orders').get().val()
+    last_record = list(record[-1].values())
 
     response = {
-        "data": data["sn"]
+        "data": last_record[0]["eta"]
     }
     return jsonify(response)
 
 
-@pages.route('/<int:order_id>')  
-#TODO: encrypt order id later
-def catch_all(order_id):
+@pages.route('/')  
+def home():
     return render_template("index.html")
+
+
+@pages.route('/<int:order_id>')  
+#TODO: encrypt order_id to a randomized sequence (like Isd8@%G) later
+def customer(order_id):
+    return render_template("customer.html")
 
