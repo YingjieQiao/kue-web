@@ -22,7 +22,7 @@ firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
 
-@pages.route('/api/random')
+@pages.route('/api/getOrder')
 def get_order():
     """
     TODO:  pushing the order into db should be done in the Java App

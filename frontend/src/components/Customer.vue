@@ -19,7 +19,7 @@ export default {
       this.order = this.getOrderFromBackend()
     },
     getOrderFromBackend () {
-      const path = `/api/getOrder`
+      const path = `http://localhost:5000/api/getOrder`
       axios.get(path)
       .then(response => {
         this.order = response.data
