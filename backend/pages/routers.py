@@ -45,7 +45,9 @@ def random_number():
             "food8": None,
             "food9": None,
             "food10": None
-        }
+        },
+
+        "eta": "NA"
     }
     db.child(data["dtype"]).child(data["sn"]).push(data["payload"])
 
@@ -54,7 +56,7 @@ def random_number():
     # print(last_record)
 
     response = {
-        "data": data
+        "data": data["sn"]
     }
     return jsonify(response)
 
