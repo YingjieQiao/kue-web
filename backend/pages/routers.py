@@ -61,8 +61,8 @@ def random_number():
     return jsonify(response)
 
 
-@pages.route('/')
-#@pages.route('/<path:path>')
-def catch_all():
+@pages.route('/<int:order_id>')  
+#TODO: encrypt order id later
+def catch_all(order_id):
     return render_template("index.html")
 
