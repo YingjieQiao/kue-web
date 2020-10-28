@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
-from random import *
 from flask_cors import CORS
+from random import *
 import requests
 
 

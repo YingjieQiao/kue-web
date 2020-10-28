@@ -2,8 +2,7 @@
 <template>
   <div>
     <p>Home page</p>
-    <p>Random number from backend: {{ randomNumber }}</p>
-    <button @click="getRandom">New random number</button>
+    <p>Order: {{ order }}</p>
   </div>
 </template>
 
@@ -12,24 +11,18 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      randomNumber: 0
+      order: 0
     }
   },
   methods: {
-    getRandomInt (min, max) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      return Math.floor(Math.random() * (max - min + 1)) + min
+    getOrder () {
+      this.order = this.getOrderFromBackend()
     },
-    getRandom () {
-      // this.randomNumber = this.getRandomInt(1, 100)
-      this.randomNumber = this.getRandomFromBackend()
-    },
-    getRandomFromBackend () {
+    getOrderFromBackend () {
       const path = `http://localhost:5000/api/random`
       axios.get(path)
       .then(response => {
-        this.randomNumber = response.data.randomNumber
+        this.order = response.data
       })
       .catch(error => {
         console.log(error)
@@ -37,7 +30,7 @@ export default {
     }
   },
   created () {
-    this.getRandom()
+    this.getOrder()
   }
 }
 </script>
