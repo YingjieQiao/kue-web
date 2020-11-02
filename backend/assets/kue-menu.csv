@@ -1,0 +1,31 @@
+Dish,price(SGD),eta(seconds),Halal (1/0)
+Fish and chips,8,600,1
+Coke,1.5,10,1
+Sprite,1.5,10,1
+Fanta,1.5,10,1
+chicken rice ,4,300,1
+Fries,2,60,1
+Vanila Ice Cream,2,60,1
+Chocolate Ice Cream,2,60,1
+Strawberry Ice Cream,2,60,1
+Fried rice,4,250,1
+Chicken Chop,6,400,1
+Duck Rice,4,220,1
+Bak ku Teh,5,400,0
+Pasta,5,400,1
+Pork Chop,6,400,0
+Braised Pork Belly,7,500,0
+Char Kway Teow,3,200,1
+Pork Ramen,6,500,0
+Shrimp Ramen,7,600,1
+Milo,1.1,30,1
+Coffee,0.9,30,1
+Nasi Lemak,3.5,200,1
+Pineapple,0.5,10,1
+Apple,0.4,10,1
+Tea,0.6,10,1
+Chicken Wing,1,30,1
+Wanton Mee,5,400,0
+Chicken Mee,4.5,300,1
+Waffle,0.8,200,1
+Mixed Rice,3.5,200,1
