@@ -7,6 +7,7 @@ import os, sys
 pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
 # use firebase for prototyping
+# env var later
 firebase_config = {
     "apiKey": "AIzaSyBF_J7wH5PNs_T2-C89qvybopm6pid8Dk8",
     "authDomain": "kueapp-722a3.firebaseapp.com",
@@ -25,21 +26,11 @@ db = firebase.database()
 @pages.route('/api/getOrder', methods=["GET", "POST"])
 def get_order():
     """
-    query (in python): db.child(data["dtype"]).child(data["sn"]).push(data["payload"])
-    1. pyrebase
-    2. get username from Vue -- how? url? 
-    3. change text: waiting for xxx seconds / Done go collect
     qns:
     1. replace localhost with IP?
-
     """
 
     data = request.get_json()
-    #print("\n")
-    #print(data)
-    #print(data["username"])
-    # {'order_id': '123', 'username': 'ss'}
-    #print("\n")
 
     path = "accounts/"+data["username"]+"/order_web"
     order_web = db.child(path).get().val()
@@ -66,10 +57,4 @@ def get_order():
 @pages.route('/')  
 def home():
     return render_template("index.html")
-
-
-@pages.route('/<int:order_id>')  
-#TODO: encrypt order_id to a randomized sequence (like Isd8@%G) later
-def customer(order_id):
-    return render_template("customer.html")
 
