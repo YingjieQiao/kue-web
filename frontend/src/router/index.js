@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const routerOptions = [
   { path: '/', component: 'Home' },
-  { path: '/:order_id', component: 'Customer' },
+  { path: '/:username/:order_id', component: 'Customer' },
   { path: '/about', component: 'About' },
   { path: '*', component: 'NotFound' }
 ]

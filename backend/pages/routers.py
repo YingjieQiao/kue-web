@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, current_app, jsonify
-import requests
+from flask import Blueprint, render_template, current_app, jsonify, request
+import logging
 from random import randint
 import pyrebase
-import os
+import os, sys
 
 pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
@@ -22,40 +22,39 @@ firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
 
-@pages.route('/api/getOrder')
+@pages.route('/api/getOrder', methods=["GET", "POST"])
 def get_order():
     """
-    TODO:  pushing the order into db should be done in the Java App
-    Payload format:
-    data = {
-        "dtype" : "orders",
-
-        "sn": count,
-
-        "payload" : {
-            "food1": "Big Mac",
-            "food2": "fries",
-            "food3": "code",
-            "food4": None,
-            "food5": None,
-            "food6": None,
-            "food7": None,
-            "food8": None,
-            "food9": None,
-            "food10": None
-        },
-
-        "eta": "NA"
-    }
-
     query (in python): db.child(data["dtype"]).child(data["sn"]).push(data["payload"])
+    1. pyrebase
+    2. get username from Vue -- how? url? 
+    3. change text: waiting for xxx seconds / Done go collect
+    qns:
+    1. replace localhost with IP?
+
     """
 
-    record = db.child('orders').get().val()
-    last_record = list(record[-1].values())
+    data = request.get_json()
+    #print("\n")
+    #print(data)
+    #print(data["username"])
+    # {'order_id': '123', 'username': 'ss'}
+    #print("\n")
 
+    path = "accounts/"+data["username"]+"/order_web"
+    order_web = db.child(path).get().val()
+
+    target_order = {}
+    for each_order in order_web.values():
+        if (data["order_id"] == each_order["orderID"]):
+            target_order = each_order
+            break
+
+    print(target_order["finishTime"])
+        
     response = {
-        "data": last_record[0]["eta"]
+        "order time": target_order["orderTime"],
+        "finish time": target_order["finishTime"]
     }
     return jsonify(response)
 

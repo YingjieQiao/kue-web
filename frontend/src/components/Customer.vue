@@ -8,6 +8,11 @@
 
 <script>
 import axios from 'axios'
+
+// const formData = new FormData()
+// formData.append('username', this.$route.params.username)
+// formData.append('id', this.$route.params.id)
+
 export default {
   data () {
     return {
@@ -20,7 +25,7 @@ export default {
     },
     getOrderFromBackend () {
       const path = `http://localhost:5000/api/getOrder`
-      axios.get(path)
+      axios.post(path, {order_id: this.$route.params.order_id, username: this.$route.params.username})
       .then(response => {
         this.order = response.data
       })
