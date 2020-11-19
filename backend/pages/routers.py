@@ -50,11 +50,15 @@ def get_order():
             target_order = each_order
             break
 
-    print(target_order["finishTime"])
+    eta = ""
+    if target_order["finishTime"] == -1:
+        eta = "Your order is not done yet. Expected waiting time: " + "____" # target_order["ETA"]
+    else:
+        eta = "Your order is done!"
         
     response = {
         "order time": target_order["orderTime"],
-        "finish time": target_order["finishTime"]
+        "eta": eta
     }
     return jsonify(response)
 

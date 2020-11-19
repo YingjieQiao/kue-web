@@ -2,16 +2,14 @@
 <template>
   <div>
     <p>Waiting for your food</p>
-    <p>ETA: {{ order }}</p>
+    <p>order placed at: {{ order["order time"] }}</p>
+    <p>ETA: {{ order["eta"] }}</p>
+    <p>Please refresh the webpage to see any updates of your food!</p>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-
-// const formData = new FormData()
-// formData.append('username', this.$route.params.username)
-// formData.append('id', this.$route.params.id)
 
 export default {
   data () {
