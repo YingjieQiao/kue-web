@@ -15,6 +15,6 @@ def create_app(Config):
         from backend.pages.routers import pages
         app.register_blueprint(pages)
 
-return app
+    return app
 
 app = create_app(Config)
