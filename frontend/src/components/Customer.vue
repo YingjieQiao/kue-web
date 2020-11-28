@@ -22,7 +22,7 @@ export default {
       this.order = this.getOrderFromBackend()
     },
     getOrderFromBackend () {
-      const path = `http://localhost:5000/api/getOrder`
+      const path = process.env.API_URL + '/getOrder' // `http://localhost:5000/api/getOrder`
       axios.post(path, {order_id: this.$route.params.order_id, username: this.$route.params.username})
       .then(response => {
         this.order = response.data
