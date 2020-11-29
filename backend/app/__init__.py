@@ -12,7 +12,7 @@ def create_app(Config):
     app.template_folder = app.config["TEMPLATE_FOLDER"]
 
     with app.app_context():
-        from app.pages.routers import pages
+        from backend.app.pages.routers import pages
         app.register_blueprint(pages)
 
     return app
