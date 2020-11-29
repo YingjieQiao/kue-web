@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_URL: JSON.stringify(`http://3.82.106.27/api`)
+  API_URL: JSON.stringify(`http://${process.env.BASE_URL}/api`)
 }
