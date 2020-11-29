@@ -2,9 +2,9 @@ from app import create_app
 import config
 
 
-flask_app = create_app(config.app_config["development"])
+application = create_app(config.app_config["development"])
 
 if __name__ == "__main__":
-    flask_app.run()
+    application.run()
 else:
-    application = flask_app
+    application.run()
