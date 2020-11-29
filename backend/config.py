@@ -4,13 +4,14 @@ import os
 class Config():
     TEMPLATE_FOLDER = os.getcwd() + "/dist"
     STATIC_FOLDER = os.getcwd() + "/dist/static/"
-    API_KEY = os.environ.get("API_KEY")
-    AUTHDOMAIN = os.environ.get("AUTHDOMAIN")
-    DBURL = os.environ.get("DBURL")
-    STORE_BUCKET = os.environ.get("STORE_BUCKET")
-    MSG_SENDER_ID = os.environ.get("MSG_SENDER_ID")
-    APPID = os.environ.get("APPID")
-    MEASURE_ID = os.environ.get("MEASURE_ID")
+    API_KEY = os.environ["API_KEY"]
+    AUTHDOMAIN = os.environ["AUTHDOMAIN"]
+    DBURL = os.environ["DBURL"]
+    PROJECT_ID = os.environ["PROJECT_ID"]
+    STORE_BUCKET = os.environ["STORE_BUCKET"]
+    MSG_SENDER_ID = os.environ["MSG_SENDER_ID"]
+    APPID = os.environ["APPID"]
+    MEASURE_ID = os.environ["MEASURE_ID"]
 
 
 class DevelopmentConfig(Config):

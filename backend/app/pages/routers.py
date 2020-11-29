@@ -9,15 +9,17 @@ pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLAT
 # use firebase for prototyping
 # env var later
 firebase_config = {
-    "apiKey": current_app.config["APIKEY"],
+    "apiKey": current_app.config["API_KEY"],
     "authDomain": current_app.config["AUTHDOMAIN"],
     "databaseURL": current_app.config["DBURL"],
     "projectId": current_app.config["PROJECT_ID"],
     "storageBucket": current_app.config["STORE_BUCKET"],
     "messagingSenderId": current_app.config["MSG_SENDER_ID"],
-    "appId": current_app.config["APP_ID"],
+    "appId": current_app.config["APPID"],
     "measurementId": current_app.config["MEASURE_ID"]
 }
+
+print(firebase_config)
 
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
