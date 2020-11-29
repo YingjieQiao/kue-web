@@ -6,8 +6,6 @@ import os, sys
 
 pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
-# use firebase for prototyping
-# env var later
 firebase_config = {
     "apiKey": current_app.config["API_KEY"],
     "authDomain": current_app.config["AUTHDOMAIN"],
@@ -18,8 +16,6 @@ firebase_config = {
     "appId": current_app.config["APPID"],
     "measurementId": current_app.config["MEASURE_ID"]
 }
-
-print(firebase_config)
 
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
@@ -50,11 +46,31 @@ def get_order():
         eta = "Your order is done!"
         
     response = {
-        "order time": target_order["orderTime"],
+        "order time": target_order["orderDate"],
         "eta": eta
     }
     return jsonify(response)
 
+
+@pages.route('/api/postRating', methods=["GET", "POST"])
+def postRating():
+    data = request.get_json()
+
+    path = "accounts/"+data["username"]+"/order_web"
+    order_web = db.child(path).get().val()
+
+    # target_order = {}
+    target_key = ""
+    for key, value in order_web.items():
+        if (data["order_id"] == value["orderID"]):
+            target_order = value
+            target_key = key
+
+    if target_key == "":
+        return "done"
+
+    db.child(path).child(target_key).update({"rating": data["rating"]})
+    return "done"
 
 @pages.route('/')  
 def home():
