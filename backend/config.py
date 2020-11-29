@@ -4,9 +4,14 @@ import os
 class Config():
     TEMPLATE_FOLDER = os.getcwd() + "/dist"
     STATIC_FOLDER = os.getcwd() + "/dist/static/"
-    # AWS_ACCESS_KEY = os.environ.get("AWS_EDUCATE_ACCESS_KEY")
-    # AWS_SECRET_KEY = os.environ.get("AWS_EDUCATE_SECRET_KEY")
-    FIREBASE_CRED_PY = os.environ.get("FIREBASE_CRED_PY")
+    API_KEY = os.environ.get("API_KEY")
+    AUTHDOMAIN = os.environ.get("AUTHDOMAIN")
+    DBURL = os.environ.get("DBURL")
+    STORE_BUCKET = os.environ.get("STORE_BUCKET")
+    MSG_SENDER_ID = os.environ.get("MSG_SENDER_ID")
+    APPID = os.environ.get("APPID")
+    MEASURE_ID = os.environ.get("MEASURE_ID")
+
 
 class DevelopmentConfig(Config):
     """ Development Specific Config """
