@@ -3,7 +3,8 @@ import config
 
 
 flask_app = create_app(config.app_config["development"])
-application = flask_app
 
 if __name__ == "__main__":
     flask_app.run()
+else:
+    application = flask_app
