@@ -36,7 +36,7 @@ def get_order():
 
     eta = ""
     if target_order["finishTime"] == -1:
-        eta = "Your order is not done yet. Expected waiting time: " + target_order["ETA"]
+        eta = "Your order is not done yet. Expected waiting time: " + str(target_order["eta"]) + " minutes"
     else:
         eta = "Your order is done!"
         
