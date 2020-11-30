@@ -23,11 +23,6 @@ db = firebase.database()
 
 @pages.route('/api/getOrder', methods=["GET", "POST"])
 def get_order():
-    """
-    qns:
-    1. replace localhost with IP?
-    """
-
     data = request.get_json()
 
     path = "accounts/"+data["username"]+"/order_web"
@@ -41,7 +36,7 @@ def get_order():
 
     eta = ""
     if target_order["finishTime"] == -1:
-        eta = "Your order is not done yet. Expected waiting time: " + "____" # target_order["ETA"]
+        eta = "Your order is not done yet. Expected waiting time: " + target_order["ETA"]
     else:
         eta = "Your order is done!"
         
