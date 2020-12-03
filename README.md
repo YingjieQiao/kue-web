@@ -1,5 +1,8 @@
 # Kue-Web
 
+Web Component of [Kue](https://github.com/YingjieQiao/kue)
+
+
 ## Build Setup
 
 ``` bash
