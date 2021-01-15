@@ -1,8 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Oleg Agapov <oleg@starcoders.com>",
+  "description": "Web Component of Kue",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
