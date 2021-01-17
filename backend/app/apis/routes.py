@@ -6,17 +6,7 @@ import os, sys
 
 api = Blueprint('api', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
-firebase_config = {
-    "apiKey": current_app.config["API_KEY"],
-    "authDomain": current_app.config["AUTHDOMAIN"],
-    "databaseURL": current_app.config["DBURL"],
-    "projectId": current_app.config["PROJECT_ID"],
-    "storageBucket": current_app.config["STORE_BUCKET"],
-    "messagingSenderId": current_app.config["MSG_SENDER_ID"],
-    "appId": current_app.config["APPID"],
-    "measurementId": current_app.config["MEASURE_ID"]
-}
-
+""" 
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
@@ -71,3 +61,4 @@ def postRating():
 def home():
     return render_template("index.html")
 
+ """

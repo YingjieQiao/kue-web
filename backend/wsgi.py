@@ -1,8 +1,8 @@
 from app import create_app
-import config
+from app.config import app_config
 
 
-application = create_app(config.app_config["development"])
+application = create_app(app_config["development"])
 
 if __name__ == "__main__":
     application.run()
