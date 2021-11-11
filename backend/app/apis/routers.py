@@ -4,7 +4,7 @@ from random import randint
 import pyrebase
 import os, sys
 
-pages = Blueprint('pages', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
+apis = Blueprint('apis', __name__, template_folder=current_app.config["TEMPLATE_FOLDER"])
 
 firebase_config = {
     "apiKey": current_app.config["API_KEY"],
@@ -21,7 +21,12 @@ firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
 
-@pages.route('/api/getOrder', methods=["GET", "POST"])
+@apis.route("/api/ping", method=["GET"])
+def ping():
+    return {'result': True, 'info': 'pong'}, 200
+
+
+@apis.route('/api/getOrder', methods=["POST"])
 def get_order():
     data = request.get_json()
 
@@ -47,7 +52,7 @@ def get_order():
     return jsonify(response)
 
 
-@pages.route('/api/postRating', methods=["GET", "POST"])
+@apis.route('/api/postRating', methods=["POST"])
 def postRating():
     data = request.get_json()
 
@@ -65,9 +70,11 @@ def postRating():
         return "done"
 
     db.child(path).child(target_key).update({"rating": data["rating"]})
+    
     return "done"
 
-@pages.route('/')  
+
+@apis.route('/')  
 def home():
     return render_template("index.html")
 

@@ -23,8 +23,6 @@ npm run build
 
 # install back-end
 cd ../backend
-virtualenv -p python3 venv
-source venv/bin/activate
 pip install -r requirements.txt
 
 # serve back-end at localhost:5000
