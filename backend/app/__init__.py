@@ -6,7 +6,7 @@ import requests
 
 def create_app(Config):
     app = Flask(__name__)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
     app.config.from_object(Config)
     app.static_folder = app.config["STATIC_FOLDER"]
     app.template_folder = app.config["TEMPLATE_FOLDER"]

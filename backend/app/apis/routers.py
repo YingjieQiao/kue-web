@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, current_app, jsonify, request
+from flask_cors import cross_origin
 import logging
 from random import randint
 import pyrebase
@@ -21,12 +22,13 @@ firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
 
-@apis.route("/api/ping", method=["GET"])
+@apis.route("/api/ping", methods=["GET"])
 def ping():
     return {'result': True, 'info': 'pong'}, 200
 
 
 @apis.route('/api/getOrder', methods=["POST"])
+@cross_origin(supports_credentials=True)
 def get_order():
     data = request.get_json()
 
@@ -46,7 +48,7 @@ def get_order():
         eta = "Your order is done!"
         
     response = {
-        "order time": target_order["orderDate"],
+        "orderTime": target_order["orderDate"],
         "eta": eta
     }
     return jsonify(response)
@@ -74,7 +76,14 @@ def postRating():
     return "done"
 
 
-@apis.route('/')  
-def home():
-    return render_template("index.html")
+@apis.route('/api/test', methods=["POST"])  
+def test():
+    data = request.get_json()
+    print(data)
+
+    response = {
+        "orderTime": "123-456-789",
+        "eta": 123
+    }
+    return jsonify(response)
 
