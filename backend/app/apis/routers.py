@@ -21,6 +21,11 @@ firebase_config = {
 firebase = pyrebase.initialize_app(firebase_config)
 db = firebase.database()
 
+@apis.after_request
+def creds(response):
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    return response
+
 
 @apis.route("/api/ping", methods=["GET"])
 def ping():
@@ -76,7 +81,8 @@ def postRating():
     return "done"
 
 
-@apis.route('/api/test', methods=["POST"])  
+@apis.route('/api/test', methods=["POST"]) 
+@cross_origin(supports_credentials=True)
 def test():
     data = request.get_json()
     print(data)

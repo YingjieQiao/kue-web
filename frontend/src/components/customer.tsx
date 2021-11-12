@@ -40,7 +40,7 @@ function CustomerContent() {
         axios.request<ParamTypes, string>({
             method: 'post',
             url: 'http://localhost:5000/api/test',
-            data: payload
+            data: payload,
         })
         .then(res => { 
             console.log(res)
