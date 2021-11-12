@@ -85,8 +85,8 @@ def test():
     print(data)
 
     response = {
-        "orderTime": "123-456-789",
-        "eta": 123
+        "orderTime": "2000-11-23T16:34:48+00:00",
+        "eta": "15 min"
     }
     return jsonify(response)
 
