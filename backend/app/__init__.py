@@ -8,11 +8,12 @@ def create_app(Config):
     app = Flask(__name__)
     CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
     app.config.from_object(Config)
+    app.config['CORS_HEADERS'] = 'Content-Type'
     app.static_folder = app.config["STATIC_FOLDER"]
     app.template_folder = app.config["TEMPLATE_FOLDER"]
 
     with app.app_context():
-        from app.apis.routers import apis
+        from app.apis.routes import apis
         app.register_blueprint(apis)
 
     return app

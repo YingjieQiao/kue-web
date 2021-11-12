@@ -23,6 +23,7 @@ function App() {
         <img src={logo} alt="logo" />
 
       </header>
+
     </div>
   );
 }

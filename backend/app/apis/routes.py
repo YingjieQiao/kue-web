@@ -27,11 +27,6 @@ def creds(response):
     return response
 
 
-@apis.route("/api/ping", methods=["GET"])
-def ping():
-    return {'result': True, 'info': 'pong'}, 200
-
-
 @apis.route('/api/getOrder', methods=["POST"])
 @cross_origin(supports_credentials=True)
 def get_order():
@@ -60,8 +55,10 @@ def get_order():
 
 
 @apis.route('/api/postRating', methods=["POST"])
+@cross_origin(supports_credentials=True)
 def postRating():
     data = request.get_json()
+    #TODO: if rating is null, throw error and return exception msg
 
     path = "accounts/"+data["username"]+"/order_web"
     order_web = db.child(path).get().val()
